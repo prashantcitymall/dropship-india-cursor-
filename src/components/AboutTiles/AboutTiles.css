@@ -1,0 +1,53 @@
+/* Additional styles for the about tiles */
+.about-section {
+  background: linear-gradient(135deg, #0466c8, #023e7d, #002855);
+  min-height: 100vh;
+  padding: 80px 0;
+}
+
+/* Custom carousel styles */
+.slick-arrow {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  z-index: 1;
+}
+
+.slick-arrow:hover {
+  background: rgba(255, 255, 255, 0.2) !important;
+}
+
+.slick-prev {
+  left: -50px;
+}
+
+.slick-next {
+  right: -50px;
+}
+
+.slick-slide {
+  opacity: 0.5;
+  transition: all 0.3s ease;
+}
+
+.slick-active {
+  opacity: 1;
+}
+
+.slick-current {
+  opacity: 1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .about-section {
+    padding: 40px 0;
+  }
+  
+  .slick-arrow {
+    display: none !important;
+  }
+}

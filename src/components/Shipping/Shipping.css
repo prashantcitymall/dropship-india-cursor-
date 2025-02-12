@@ -361,56 +361,40 @@
 @media (max-width: 768px) {
   .shipping-cards {
     grid-template-columns: 1fr;
+    gap: 20px;
   }
-  
+
   .shipping-card {
-    max-width: 400px;
-    margin: 0 auto;
+    margin: 0;
   }
-  
+
   .shipping-title {
     font-size: 2rem;
-    white-space: normal;
   }
 
   .bottom-tiles {
-    flex-direction: column;
-    align-items: center;
+    margin-top: 40px;
   }
-  
+
   .right-image-container {
-    margin-right: 0;
-    margin-bottom: 20px;
-    transform: none;
+    display: none;
   }
 
   .bottom-tiles-grid {
     grid-template-columns: 1fr;
-    gap: 20px;
-    padding: 10px;
     width: 100%;
-    left: 50%;
+    left: 0;
+    transform: none;
+    margin: 0;
+    padding: 20px;
   }
 
   .bottom-tiles-grid .tile-card:nth-child(4),
   .bottom-tiles-grid .tile-card:nth-child(5) {
-    grid-column: auto;
+    max-width: 100%;
   }
 
   .tile-card {
-    max-width: 300px;
-    margin: 0 auto;
+    margin: 0;
   }
-}
-
-.capabilities-wrapper {
-  width: 100%;
-  padding: 20px;
-  background: transparent;
-}
-
-/* Ensure proper spacing */
-.capabilities-wrapper > div {
-  margin: 0 auto;
-  max-width: 1200px;
 }

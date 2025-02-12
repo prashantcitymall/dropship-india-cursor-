@@ -289,7 +289,7 @@ const SignUpButton = styled(Button)`
 `;
 
 const Navbar = () => {
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
   const isActive = (path) => {
@@ -297,15 +297,11 @@ const Navbar = () => {
   };
 
   const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
+    setIsOpen(!isOpen);
   };
 
-  const navigationItems = [
+  const menuItems = [
     { label: 'Home', path: '/' },
-    { label: 'Cards', path: '/cards' },
-    { label: 'Products', path: '/products' },
-    { label: 'Services', path: '/services' },
-    { label: 'Contact', path: '/contact' }
   ];
 
   return (
@@ -319,13 +315,11 @@ const Navbar = () => {
               </Link>
             </LogoContainer>
             <NavContainer>
-              {navigationItems.map((item) => (
-                <Link 
-                  key={item.path} 
-                  to={item.path} 
-                  style={{ textDecoration: 'none' }}
-                >
-                  <StyledButton active={isActive(item.path)}>
+              {menuItems.map((item, index) => (
+                <Link to={item.path} key={index} style={{ textDecoration: 'none' }}>
+                  <StyledButton 
+                    active={isActive(item.path)}
+                  >
                     {item.label}
                   </StyledButton>
                 </Link>
@@ -354,24 +348,24 @@ const Navbar = () => {
 
       <StyledDrawer
         anchor="right"
-        open={mobileOpen}
+        open={isOpen}
         onClose={handleDrawerToggle}
         ModalProps={{
           keepMounted: true,
         }}
       >
         <DrawerList>
-          {navigationItems.map((item) => (
-            <Link
-              key={item.path}
+          {menuItems.map((item, index) => (
+            <DrawerItem 
+              key={index} 
+              button 
+              component={Link} 
               to={item.path}
-              style={{ textDecoration: 'none', color: 'inherit' }}
               onClick={handleDrawerToggle}
+              active={isActive(item.path)}
             >
-              <DrawerItem active={isActive(item.path)}>
-                {item.label}
-              </DrawerItem>
-            </Link>
+              {item.label}
+            </DrawerItem>
           ))}
           <DrawerItem button onClick={() => {
             window.open('https://dropshipindia.live/', '_blank');

@@ -1,151 +1,271 @@
 import React from 'react';
-import { Box, Grid, Card, CardContent, CardMedia, Typography } from '@mui/material';
-import { styled } from '@mui/material/styles';
+import styled, { keyframes } from 'styled-components';
 import { motion } from 'framer-motion';
-import { useLocation } from 'react-router-dom';
 
-const StyledCard = styled(Card)(({ theme }) => ({
-  height: '100%',
-  display: 'flex',
-  flexDirection: 'column',
-  borderRadius: '16px',
-  overflow: 'hidden',
-  boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
-  transition: 'transform 0.3s ease-in-out',
-  padding: '12px',
-  backgroundColor: '#ffffff',
-  '&:hover': {
-    transform: 'translateY(-8px)',
-  },
-}));
+const shimmer = keyframes`
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+`;
 
-const StyledCardMedia = styled(CardMedia)(({ showText }) => ({
-  height: showText ? '180px' : '280px',
-  objectFit: 'contain',
-  borderRadius: '12px',
-  backgroundColor: '#f5f8ff',
-  padding: '12px',
-}));
+const float = keyframes`
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+`;
 
-const StyledCardContent = styled(CardContent)({
-  flexGrow: 1,
-  padding: '16px 8px 8px 8px',
-});
+const Title = styled.h2`
+  text-align: center;
+  color: #333;
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 50px;
+  position: relative;
+  padding-bottom: 15px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: #4CAF50;
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+  }
+`;
 
-const cardData = [
-  {
-    title: '1Cr+ Orders Fulfilled',
-    description: '95% orders delivered in less than 5 days',
-    image: '/cards/delivery boy.jpg',
-  },
-  {
-    title: '60,000+ Products',
-    description: 'From 8,500 manufacturers, importers & sellers',
-    image: '/cards/diffrent products.jpg',
-  },
-  {
-    title: 'Unbeatable Prices',
-    description: 'Best prices guaranteed across all platforms',
-    image: '/cards/diffrent prices.jpg',
-  },
-  {
-    title: '27,000+ Pincodes',
-    description: 'Pan India delivery coverage',
-    image: '/cards/pan india coverage .jpg',
-  },
-  {
-    title: 'Daily Payments',
-    description: 'Ensure uninterrupted cash flow',
-    image: '/cards/daily payment 1.jpg',
-  },
-  {
-    title: 'Transparency',
-    description: 'Dedicated KAMs for live support',
-    image: '/cards/transparency .jpg',
-  },
-  {
-    title: 'Dedicated Support',
-    description: 'Advanced NDR panel with expert team',
-    image: '/cards/dedicated team.jpg',
-  },
-  {
-    title: 'Bulk Orders',
-    description: 'Efficient handling of large volume orders',
-    image: '/cards/bulk orders.jpg',
-  },
-  {
-    title: '20% Lower Shipping',
-    description: 'Own supply chain with 8 delivery partners',
-    image: '/cards/lower cost.png',
-  },
-];
+const Container = styled.section`
+  padding: 80px 0;
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    mix-blend-mode: soft-light;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+  }
+`;
+
+const ContentWrapper = styled.div`
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 40px;
+  position: relative;
+  z-index: 2;
+`;
+
+const Card = styled(motion.div)`
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.1),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+  padding: 40px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      45deg,
+      rgba(76, 175, 80, 0.1) 0%,
+      rgba(33, 150, 243, 0.1) 30%,
+      rgba(156, 39, 176, 0.1) 60%,
+      rgba(255, 193, 7, 0.1) 100%
+    );
+    z-index: 0;
+  }
+`;
+
+const ImageGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  position: relative;
+  z-index: 2;
+  
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+  }
+  
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+`;
+
+const ImageWrapper = styled(motion.div)`
+  position: relative;
+  width: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  aspect-ratio: 4/3;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 
+    0 4px 15px rgba(0, 0, 0, 0.1),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 
+      0 8px 30px rgba(0, 0, 0, 0.2),
+      0 0 0 1px rgba(255, 255, 255, 0.3),
+      0 0 20px rgba(76, 175, 80, 0.2);
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.4) 0%,
+      rgba(255, 255, 255, 0.1) 100%
+    );
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  &:hover::before {
+    opacity: 1;
+  }
+`;
+
+const Image = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  padding: 10px;
+
+  ${props => (
+    props.$isFirstImage || 
+    props.$isSecondImage || 
+    props.$isThirdImage ||
+    props.$isDeliveryBoy ||
+    props.$isDedicatedTeam ||
+    props.$isDailyPayment
+  ) && `
+    object-fit: cover;
+    padding: 0;
+  `}
+`;
 
 const FeatureCards = () => {
-  const location = useLocation();
-  const showText = location.pathname !== '/cards';
+  const features = [
+    { image: '/cards/pan%20india%20coverage%20.jpg' },
+    { image: '/cards/transparency%20.jpg' },
+    { image: '/cards/diffrent%20products.jpg' },
+    { image: '/cards/diffrent%20prices.jpg' },
+    { image: '/cards/dedicated%20team.jpg' },
+    { image: '/cards/daily%20payment%201.jpg' }
+  ];
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { 
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { 
+      opacity: 0,
+      y: 20,
+      scale: 0.95
+    },
+    visible: { 
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 10
+      }
+    }
+  };
 
   return (
-    <Box sx={{ 
-      py: showText ? 6 : 3, 
-      px: { xs: 2, md: 4 }, 
-      backgroundColor: '#f5f8ff',
-      minHeight: '100vh'
-    }}>
-      {showText && (
-        <Typography
-          component="h2"
-          variant="h3"
-          align="center"
-          sx={{ mb: 6, fontWeight: 'bold', color: '#1a237e' }}
+    <Container>
+      <ContentWrapper>
+        <Title>Why Choose Dropship India?</Title>
+        <Card
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={containerVariants}
         >
-          Why Choose Us
-        </Typography>
-      )}
-      <Grid container spacing={3}>
-        {cardData.map((card, index) => (
-          <Grid item xs={12} sm={6} md={3} key={index}>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
-              <StyledCard>
-                <StyledCardMedia
-                  component="img"
-                  image={card.image}
-                  alt={card.title}
-                  showText={showText}
+          <ImageGrid>
+            {features.map((feature, index) => (
+              <ImageWrapper
+                key={index}
+                whileHover={{ 
+                  scale: 1.05,
+                  transition: { duration: 0.3 }
+                }}
+              >
+                <Image 
+                  src={feature.image} 
+                  alt={`Feature ${index + 1}`} 
+                  loading="lazy"
+                  $isFirstImage={index === 0}
+                  $isSecondImage={index === 1}
+                  $isThirdImage={index === 2}
+                  $isDedicatedTeam={index === 4}
+                  $isDailyPayment={index === 5}
                 />
-                {showText && (
-                  <StyledCardContent>
-                    <Typography
-                      gutterBottom
-                      variant="h6"
-                      component="h3"
-                      sx={{ 
-                        fontWeight: 'bold',
-                        color: '#1a237e',
-                        mb: 1,
-                        fontSize: '1rem'
-                      }}
-                    >
-                      {card.title}
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      color="text.secondary"
-                      sx={{ lineHeight: 1.5 }}
-                    >
-                      {card.description}
-                    </Typography>
-                  </StyledCardContent>
-                )}
-              </StyledCard>
-            </motion.div>
-          </Grid>
-        ))}
-      </Grid>
-    </Box>
+              </ImageWrapper>
+            ))}
+          </ImageGrid>
+        </Card>
+      </ContentWrapper>
+    </Container>
   );
 };
 

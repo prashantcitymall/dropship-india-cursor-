@@ -17,23 +17,10 @@ const glowAnimation = keyframes`
 const ContactWrapper = styled.section`
   min-height: 100vh;
   padding: 60px 0;
-  background: #1a237e;
   position: relative;
   margin-top: -7%;
   z-index: 2;
   overflow: hidden;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #1a237e;
-    opacity: 0.9;
-    z-index: -1;
-  }
 
   @media (max-width: 768px) {
     padding: 40px 16px;
@@ -60,11 +47,11 @@ const ContactContainer = styled.div`
 `;
 
 const GlassCard = styled.div`
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   border-radius: 30px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   padding: 40px;
   position: relative;
@@ -96,8 +83,11 @@ const GlassCard = styled.div`
 
   &:hover {
     transform: translateY(-5px);
-    border-color: rgba(82, 157, 255, 0.2);
-    animation: ${glowAnimation} 3s infinite;
+    border-color: rgba(76, 175, 80, 0.2);
+    box-shadow: 
+      0 14px 41px rgba(0, 0, 0, 0.1),
+      0 0 18px rgba(76, 175, 80, 0.2),
+      0 0 36px rgba(76, 175, 80, 0.1);
 
     &::before {
       left: 100%;
@@ -109,9 +99,7 @@ const Title = styled.h2`
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 30px;
-  background: linear-gradient(135deg, #ffffff 0%, #a5c5ff 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #333;
   position: relative;
   display: inline-block;
 
@@ -127,9 +115,7 @@ const Title = styled.h2`
     left: 0;
     width: 60px;
     height: 3px;
-    background: linear-gradient(90deg, #529dff, transparent);
-    animation: ${gradientFlow} 3s ease infinite;
-    background-size: 200% 200%;
+    background: #4CAF50;
   }
 `;
 
@@ -159,7 +145,7 @@ const InfoItem = styled.div`
 `;
 
 const InfoLabel = styled.span`
-  color: rgba(255, 255, 255, 0.7);
+  color: #666;
   font-size: 0.9rem;
   font-weight: 500;
   text-transform: uppercase;
@@ -171,7 +157,7 @@ const InfoLabel = styled.span`
 `;
 
 const InfoText = styled.span`
-  color: #ffffff;
+  color: #333;
   font-size: 1.1rem;
   font-weight: 500;
 
@@ -186,7 +172,7 @@ const StyledTextField = styled(TextField)`
   
   .MuiOutlinedInput-root {
     height: ${props => props.multiline ? 'auto' : '55px'};
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 15px;
     transition: all 0.3s ease;
     
@@ -195,30 +181,30 @@ const StyledTextField = styled(TextField)`
     }
     
     &:hover {
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(255, 255, 255, 0.2);
     }
     
     &.Mui-focused {
-      background: rgba(255, 255, 255, 0.07);
+      background: rgba(255, 255, 255, 0.15);
     }
     
     fieldset {
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(76, 175, 80, 0.2);
       transition: all 0.3s ease;
     }
     
     &:hover fieldset {
-      border-color: rgba(82, 157, 255, 0.3);
+      border-color: rgba(76, 175, 80, 0.3);
     }
     
     &.Mui-focused fieldset {
-      border-color: #529dff;
+      border-color: #4CAF50;
       border-width: 2px;
     }
   }
   
   .MuiInputLabel-root {
-    color: rgba(255, 255, 255, 0.7);
+    color: #666;
     font-size: 1rem;
     
     @media (max-width: 768px) {
@@ -226,12 +212,12 @@ const StyledTextField = styled(TextField)`
     }
     
     &.Mui-focused {
-      color: #529dff;
+      color: #4CAF50;
     }
   }
   
   input, textarea {
-    color: #ffffff;
+    color: #333;
     font-size: 1rem;
     padding: 15px;
     
@@ -241,14 +227,14 @@ const StyledTextField = styled(TextField)`
     }
     
     &::placeholder {
-      color: rgba(255, 255, 255, 0.5);
+      color: rgba(0, 0, 0, 0.5);
     }
   }
 `;
 
 const SubmitButton = styled(Button)`
   && {
-    background: linear-gradient(135deg, #1a2b6d 0%, #529dff 100%);
+    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
     color: white;
     padding: 15px 40px;
     font-size: 1rem;
@@ -283,8 +269,11 @@ const SubmitButton = styled(Button)`
     
     &:hover {
       transform: translateY(-3px);
-      background: linear-gradient(135deg, #529dff 0%, #1a2b6d 100%);
-      animation: ${glowAnimation} 2s infinite;
+      background: linear-gradient(135deg, #45a049 0%, #4CAF50 100%);
+      box-shadow: 
+        0 14px 41px rgba(0, 0, 0, 0.1),
+        0 0 18px rgba(76, 175, 80, 0.2),
+        0 0 36px rgba(76, 175, 80, 0.1);
 
       &::before {
         left: 100%;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Box, Container } from '@mui/material';
+import { Box, Container, Button } from '@mui/material';
 import styled, { keyframes } from 'styled-components';
 
 const slideUp = keyframes`
@@ -13,40 +13,77 @@ const slideUp = keyframes`
   }
 `;
 
+const VideoBackground = styled.video`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: 1;
+  opacity: 1;
+  margin: 0;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+`;
+
 const HeroSection = styled(Box)`
   color: white;
-  padding: 120px 0 60px;
-  min-height: 100vh;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
   position: relative;
   overflow: hidden;
   background: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 0;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 2;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+  }
 
   @media (max-width: 1024px) {
-    padding: 100px 0 40px;
+    padding: 0;
   }
 
   @media (max-width: 768px) {
-    padding: 80px 0 30px;
-    min-height: calc(100vh - 60px);
+    padding: 0;
+    min-height: 100vh;
   }
 `;
 
 const ContentWrapper = styled(Container)`
   text-align: center;
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 0;
   padding: 0 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 40px;
+  gap: 20px;
+  position: relative;
+  z-index: 3;
+  height: 100%;
+  justify-content: center;
 
   @media (max-width: 768px) {
     padding: 0 16px;
-    gap: 24px;
+    gap: 12px;
   }
 `;
 
@@ -111,6 +148,10 @@ const ButtonGroup = styled.div`
   gap: 20px;
   justify-content: center;
   animation: ${slideUp} 0.8s ease-out 0.4s backwards;
+  margin-top: 6%;
+  position: relative;
+  z-index: 100;
+  pointer-events: auto;
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -135,6 +176,13 @@ const PremiumButton = styled(Button)`
     line-height: 1;
     display: flex;
     align-items: center;
+    z-index: 100;
+    cursor: pointer !important;
+    pointer-events: auto !important;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 
     @media (max-width: 768px) {
       width: 100%;
@@ -157,6 +205,7 @@ const PremiumButton = styled(Button)`
         transparent
       );
       transition: 0.6s;
+      pointer-events: none;
     }
 
     &:hover {
@@ -174,6 +223,9 @@ const PremiumButton = styled(Button)`
 const Hero = () => {
   return (
     <HeroSection>
+      <VideoBackground autoPlay muted loop playsInline>
+        <source src="/video/robot.mp4" type="video/mp4" />
+      </VideoBackground>
       <ContentWrapper maxWidth="xl">
         <MainTitle>
           Transform Your Business with <span>Dropshipping</span>
@@ -186,7 +238,7 @@ const Hero = () => {
             variant="contained"
             onClick={() => window.open('https://dropshipindia.live/', '_blank')}
           >
-            Get Started
+            Link Your Business Store
           </PremiumButton>
         </ButtonGroup>
       </ContentWrapper>

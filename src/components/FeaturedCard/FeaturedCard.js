@@ -21,7 +21,7 @@ const scanline = keyframes`
 const CardContainer = styled.div`
   width: 100%;
   max-width: 1200px;
-  margin: 13vh auto 0;
+  margin: 23vh auto 0;
   padding: 30px 20px 60px;
   display: flex;
   flex-direction: column;

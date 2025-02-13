@@ -8,14 +8,14 @@ const SourcingSection = styled.section`
   position: relative;
   z-index: 2;
   overflow: hidden;
-  margin-top: -62%;
+  margin-top: -68%;
 
   @media (max-width: 1024px) {
-    margin-top: -65%;
+    margin-top: -71%;
   }
 
   @media (max-width: 768px) {
-    margin-top: -67%;
+    margin-top: -73%;
   }
 
   &:after {
@@ -65,6 +65,22 @@ const CardsContainer = styled.div`
 
   @media (max-width: 768px) {
     gap: 20px;
+  }
+`;
+
+const ImageWrapper = styled.div`
+  width: 100%;
+  height: 80px;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+
+  img {
+    width: auto;
+    height: 100%;
+    object-fit: contain;
   }
 `;
 
@@ -125,19 +141,23 @@ const Sourcing = () => {
   const cards = [
     {
       title: "48-Hours Quick Sourcing",
-      text: "Fast sourcing service for new products at unbeatable prices across India."
+      text: "Fast sourcing service for new products at unbeatable prices across India.",
+      image: "/images/sourcing images/48-hours.png"
     },
     {
       title: "60K+ High Quality Products",
-      text: "Access to 60K+ high quality curated products from verified suppliers."
+      text: "Access to 60K+ high quality curated products from verified suppliers.",
+      image: "/images/sourcing images/high-quality.png"
     },
     {
       title: "Top Manufacturers Network",
-      text: "Sourced from 8,500+ top manufacturers, importers and sellers nationwide."
+      text: "Sourced from 8,500+ top manufacturers, importers and sellers nationwide.",
+      image: "/images/sourcing images/worker.png"
     },
     {
       title: "Better Pricing Guaranteed",
-      text: "Minimum 30% better pricing for products vs all other platforms in the market."
+      text: "Minimum 30% better pricing for products vs all other platforms in the market.",
+      image: "/images/sourcing images/best-price.png"
     }
   ];
 
@@ -147,6 +167,11 @@ const Sourcing = () => {
       <CardsContainer>
         {cards.map((card, index) => (
           <Card key={index}>
+            {card.image && (
+              <ImageWrapper>
+                <img src={card.image} alt={card.title} />
+              </ImageWrapper>
+            )}
             <CardTitle>{card.title}</CardTitle>
             <CardText>
               {card.text.split(' ').map((word, i) => (

@@ -16,7 +16,7 @@ const borderAnimation = keyframes`
 const Container = styled.div`
   width: 100%;
   max-width: 1400px;
-  margin: -5vh auto 0;
+  margin: 6vh auto 0;
   padding: 0 20px 60px;
   display: flex;
   flex-direction: column;
@@ -86,6 +86,22 @@ const Tile = styled.div`
   }
 `;
 
+const ImageWrapper = styled.div`
+  width: 100%;
+  height: 80px;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+
+  img {
+    width: auto;
+    height: 100%;
+    object-fit: contain;
+  }
+`;
+
 const Title = styled.h3`
   font-size: 1.5rem;
   margin-bottom: 15px;
@@ -117,15 +133,18 @@ const Description = styled.p`
 const features = [
   {
     title: "Extensive Products",
-    description: "Explore our diverse catalog of high-quality products from trusted suppliers across India."
+    description: "Explore our diverse catalog of high-quality products from trusted suppliers across India.",
+    image: "/images/item.png"
   },
   {
     title: "Direct Sourcing",
-    description: "Get direct access to manufacturers, ensuring the best prices and authentic products."
+    description: "Get direct access to manufacturers, ensuring the best prices and authentic products.",
+    image: "/images/delivery.png"
   },
   {
     title: "Seamless Integration",
-    description: "Easily integrate with your existing systems for streamlined order processing."
+    description: "Easily integrate with your existing systems for streamlined order processing.",
+    image: "/images/integration.png"
   }
 ];
 
@@ -135,6 +154,11 @@ const FeatureTiles = () => {
       <TileContainer>
         {features.map((feature, index) => (
           <Tile key={index}>
+            {feature.image && (
+              <ImageWrapper>
+                <img src={feature.image} alt={feature.title} />
+              </ImageWrapper>
+            )}
             <Title>{feature.title}</Title>
             <Description>{feature.description}</Description>
           </Tile>

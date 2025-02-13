@@ -8,14 +8,14 @@ const ShippingSection = styled.section`
   position: relative;
   z-index: 2;
   overflow: hidden;
-  margin-top: -92%;
+  margin-top: -89%;
 
   @media (max-width: 1024px) {
-    margin-top: -95%;
+    margin-top: -92%;
   }
 
   @media (max-width: 768px) {
-    margin-top: -97%;
+    margin-top: -94%;
   }
 
   &:after {
@@ -120,23 +120,43 @@ const Highlight = styled.span`
   font-weight: 600;
 `;
 
+const ImageWrapper = styled.div`
+  width: 100%;
+  height: 80px;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+
+  img {
+    width: auto;
+    height: 100%;
+    object-fit: contain;
+  }
+`;
+
 const Shipping = () => {
   const cards = [
     {
       title: "Trusted Delivery Partners",
-      text: "Partnered with Delhivery, Blue Dart, DTDC, and Ekart for reliable shipping across India."
+      text: "Partnered with Delhivery, Blue Dart, DTDC, and Ekart for reliable shipping across India.",
+      image: "/images/shipping images/partner.png"
     },
     {
       title: "Road, Rail & Air Freight",
-      text: "Multiple transport capabilities for reducing delivery TATs and ensuring faster reach to customers."
+      text: "Multiple transport capabilities for reducing delivery TATs and ensuring faster reach to customers.",
+      image: "/images/shipping images/air.png"
     },
     {
       title: "Best in Class Delivery",
-      text: "Exceptional performance with 95% orders delivered in less than 5 days nationwide."
+      text: "Exceptional performance with 95% orders delivered in less than 5 days nationwide.",
+      image: "/images/shipping images/fast.png"
     },
     {
       title: "Pan India COD",
-      text: "Seamless COD Remittance with delivery across 27,000+ pincodes throughout India."
+      text: "Seamless COD Remittance with delivery across 27,000+ pincodes throughout India.",
+      image: "/images/shipping images/cod.png"
     }
   ];
 
@@ -146,6 +166,11 @@ const Shipping = () => {
       <CardsContainer>
         {cards.map((card, index) => (
           <Card key={index}>
+            {card.image && (
+              <ImageWrapper>
+                <img src={card.image} alt={card.title} />
+              </ImageWrapper>
+            )}
             <CardTitle>{card.title}</CardTitle>
             <CardText>
               {card.text.split(' ').map((word, i) => (

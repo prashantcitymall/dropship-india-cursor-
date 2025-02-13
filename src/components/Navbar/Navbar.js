@@ -417,13 +417,6 @@ const Navbar = () => {
               >
                 <span>Home</span>
               </HomeButton>
-              <StyledButton
-                component={Link}
-                to="/products"
-                active={isActive('/products')}
-              >
-                Products
-              </StyledButton>
               <AuthButton
                 onClick={() => window.open('https://dropshipindia.live/', '_blank')}
               >

@@ -8,7 +8,7 @@ const WorkflowContainer = styled.section`
   position: relative;
   z-index: 1;
   background: transparent;
-  margin: -41% 0 0 0;
+  margin: -45% 0 0 0;
 `;
 
 const Title = styled.h2`

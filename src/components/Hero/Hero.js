@@ -27,6 +27,10 @@ const VideoBackground = styled.video`
   margin: 0;
   border-bottom-left-radius: 30px;
   border-bottom-right-radius: 30px;
+  box-shadow: 
+    0 20px 50px rgba(0, 0, 0, 0.5),
+    0 10px 30px rgba(0, 0, 0, 0.4);
+  filter: drop-shadow(0 25px 25px rgba(0, 0, 0, 0.3));
 `;
 
 const HeroSection = styled(Box)`
@@ -55,6 +59,9 @@ const HeroSection = styled(Box)`
     z-index: 2;
     border-bottom-left-radius: 30px;
     border-bottom-right-radius: 30px;
+    box-shadow: 
+      inset 0 -40px 50px -20px rgba(0, 0, 0, 0.3),
+      0 30px 70px -20px rgba(0, 0, 0, 0.5);
   }
 
   @media (max-width: 1024px) {

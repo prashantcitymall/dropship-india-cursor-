@@ -15,6 +15,7 @@ const Title = styled.h2`
   font-size: 2.5rem;
   text-align: center;
   margin-bottom: 50px;
+  margin-top: 5%;
   color: #335da9;
   text-transform: uppercase;
   letter-spacing: 2px;

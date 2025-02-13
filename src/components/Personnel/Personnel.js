@@ -109,23 +109,48 @@ const GreenText = styled.span`
   font-weight: 700;
 `;
 
+const ImageWrapper = styled.div`
+  width: 100%;
+  height: 150px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  @media (max-width: 768px) {
+    height: 120px;
+    margin-bottom: 15px;
+  }
+`;
+
 const Personnel = () => {
   const cards = [
     {
       title: 'Who We Are',
-      text: <>Dropship India, a <GreenText>Citymall subsidiary</GreenText>, is India&apos;s fastest-growing dropshipping platform & the smart choice for all eCommerce entrepreneurs.</>
+      text: <>Dropship India, a <GreenText>Citymall subsidiary</GreenText>, is India&apos;s fastest-growing dropshipping platform & the smart choice for all eCommerce entrepreneurs.</>,
+      image: "/images/about us images/who.png"
     },
     {
       title: 'Our Scale',
-      text: 'Built by professionals, Dropship India currently works with 150+ dropshippers & >40,000 orders daily.'
+      text: 'Built by professionals, Dropship India currently works with 150+ dropshippers & >40,000 orders daily.',
+      image: "/images/about us images/scale.png"
     },
     {
       title: 'Our Products',
-      text: 'Wide range of products with highest profit margins and comprehensive end-to-end order delivery and fulfillment.'
+      text: 'Wide range of products with highest profit margins and comprehensive end-to-end order delivery and fulfillment.',
+      image: "/images/about us images/product.png"
     },
     {
       title: 'Our Values',
-      text: 'We pride ourselves on maintaining complete Transparency & Trust in all our business operations.'
+      text: 'We pride ourselves on maintaining complete Transparency & Trust in all our business operations.',
+      image: "/images/about us images/values.png"
     }
   ];
 
@@ -135,6 +160,11 @@ const Personnel = () => {
       <CardsContainer>
         {cards.map((card, index) => (
           <Card key={index}>
+            {card.image && (
+              <ImageWrapper>
+                <img src={card.image} alt={card.title} />
+              </ImageWrapper>
+            )}
             <CardTitle>{card.title}</CardTitle>
             <CardText>{card.text}</CardText>
           </Card>

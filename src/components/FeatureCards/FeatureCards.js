@@ -51,6 +51,7 @@ const Container = styled.section`
   position: relative;
   width: 100%;
   min-height: 100vh;
+  margin-top: -1%;
   
   &::before {
     content: '';
@@ -79,6 +80,18 @@ const ContentWrapper = styled.div`
   width: 100%;
   margin: 0 auto;
   padding: 0 40px;
+  position: relative;
+  z-index: 2;
+`;
+
+const CardContainer = styled.div`
+  width: 100%;
+  max-width: 1400px;
+  margin: 8vh auto 0;
+  padding: 30px 20px 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   position: relative;
   z-index: 2;
 `;
@@ -235,35 +248,37 @@ const FeatureCards = () => {
     <Container>
       <ContentWrapper>
         <Title>Why Choose Dropship India?</Title>
-        <Card
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={containerVariants}
-        >
-          <ImageGrid>
-            {features.map((feature, index) => (
-              <ImageWrapper
-                key={index}
-                whileHover={{ 
-                  scale: 1.05,
-                  transition: { duration: 0.3 }
-                }}
-              >
-                <Image 
-                  src={feature.image} 
-                  alt={`Feature ${index + 1}`} 
-                  loading="lazy"
-                  $isFirstImage={index === 0}
-                  $isSecondImage={index === 1}
-                  $isThirdImage={index === 2}
-                  $isDedicatedTeam={index === 4}
-                  $isDailyPayment={index === 5}
-                />
-              </ImageWrapper>
-            ))}
-          </ImageGrid>
-        </Card>
+        <CardContainer>
+          <Card
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={containerVariants}
+          >
+            <ImageGrid>
+              {features.map((feature, index) => (
+                <ImageWrapper
+                  key={index}
+                  whileHover={{ 
+                    scale: 1.05,
+                    transition: { duration: 0.3 }
+                  }}
+                >
+                  <Image 
+                    src={feature.image} 
+                    alt={`Feature ${index + 1}`} 
+                    loading="lazy"
+                    $isFirstImage={index === 0}
+                    $isSecondImage={index === 1}
+                    $isThirdImage={index === 2}
+                    $isDedicatedTeam={index === 4}
+                    $isDailyPayment={index === 5}
+                  />
+                </ImageWrapper>
+              ))}
+            </ImageGrid>
+          </Card>
+        </CardContainer>
       </ContentWrapper>
     </Container>
   );

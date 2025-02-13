@@ -95,6 +95,27 @@ const GlassCard = styled.div`
   }
 `;
 
+const ImageWrapper = styled.div`
+  width: 100%;
+  height: 200px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  @media (max-width: 768px) {
+    height: 150px;
+    margin-bottom: 20px;
+  }
+`;
+
 const Title = styled.h2`
   font-size: 2rem;
   font-weight: 700;
@@ -311,6 +332,9 @@ const Contact = () => {
     <ContactWrapper>
       <ContactContainer>
         <GlassCard>
+          <ImageWrapper>
+            <img src="/images/contact images/contact-us.png" alt="Contact Us" />
+          </ImageWrapper>
           <Title>Contact Us</Title>
           <ContactInfo>
             <InfoItem>
@@ -329,6 +353,9 @@ const Contact = () => {
         </GlassCard>
 
         <GlassCard>
+          <ImageWrapper>
+            <img src="/images/contact images/contact-form.png" alt="Send Message" />
+          </ImageWrapper>
           <Title>Send Us A Message</Title>
           <form onSubmit={handleSubmit}>
             <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 2, mb: 2 }}>

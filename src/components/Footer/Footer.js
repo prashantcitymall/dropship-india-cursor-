@@ -49,10 +49,15 @@ const GlowingCard = styled.div`
   transition: transform 0.3s ease;
   border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  height: 100%;
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
 
   @media (max-width: 960px) {
     padding: 15px;
     margin-bottom: 8px;
+    min-height: 250px;
   }
 
   &:hover {
@@ -169,30 +174,39 @@ const HeartIcon = styled.span`
 
 const GridContainer = styled(Grid)`
   margin-top: -20px;
+  & .MuiGrid-item {
+    height: 100%;
+  }
 `;
 
-const CitymallLogo = styled.div`
-  text-align: center;
-  margin: 0;
-  transform: translateX(-20%);
-  position: relative;
-  top: 20px;
-  
-  img {
-    height: 153px;
-    opacity: 1;
-    clip-path: inset(7% 0 0 0);
-    object-fit: cover;
-    object-position: center bottom;
+const BottomStrip = styled.div`
+  width: 100%;
+  background: #0F0F0F;
+  padding: 18px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  color: white;
+  font-size: 1.44rem;
+  margin-top: 30px;
+  box-shadow: 0 -1px 10px rgba(0, 0, 0, 0.1);
 
-    @media (max-width: 768px) {
-      height: 128px;
-    }
+  span {
+    font-weight: bold;
+  }
+
+  img {
+    height: 53px;
+    width: auto;
   }
 
   @media (max-width: 768px) {
-    transform: translateX(-10%);
-    top: 15px;
+    font-size: 1.2rem;
+    padding: 15px 0;
+    img {
+      height: 42px;
+    }
   }
 `;
 
@@ -201,7 +215,7 @@ const Footer = () => {
     <FooterWrapper>
       <Container maxWidth="lg">
         <GridContainer container spacing={3}>
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} md={3} style={{ height: '100%' }}>
             <GlowingCard>
               <FooterTitle>PRODUCTS</FooterTitle>
               <FooterLink to="/directory">Directory</FooterLink>
@@ -212,7 +226,7 @@ const Footer = () => {
             </GlowingCard>
           </Grid>
 
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} md={3} style={{ height: '100%' }}>
             <GlowingCard>
               <FooterTitle>USE CASES</FooterTitle>
               <FooterLink to="/start-business">Start your online business</FooterLink>
@@ -222,7 +236,7 @@ const Footer = () => {
             </GlowingCard>
           </Grid>
 
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} md={3} style={{ height: '100%' }}>
             <GlowingCard>
               <FooterTitle>RESOURCES</FooterTitle>
               <FooterLink to="/forum">Forum</FooterLink>
@@ -233,7 +247,7 @@ const Footer = () => {
             </GlowingCard>
           </Grid>
 
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} md={3} style={{ height: '100%' }}>
             <GlowingCard>
               <FooterTitle>CONTACT US</FooterTitle>
               <Box mb={1}>
@@ -264,10 +278,6 @@ const Footer = () => {
           </Grid>
         </GridContainer>
 
-        <CitymallLogo>
-          <img src="/images/citymall.png" alt="Citymall Logo" />
-        </CitymallLogo>
-
         <BottomBar>
           <Typography variant="body2" style={{ color: '#666' }}>
             {new Date().getFullYear()} Dropship India. All rights reserved. Made with 
@@ -276,6 +286,11 @@ const Footer = () => {
           </Typography>
         </BottomBar>
       </Container>
+      <BottomStrip>
+        <span>A Product Of</span>
+        <img src="/citymall logo/footer logo.png" alt="Citymall Logo" />
+        <span>Empowering Ambitions of Bharat</span>
+      </BottomStrip>
     </FooterWrapper>
   );
 };

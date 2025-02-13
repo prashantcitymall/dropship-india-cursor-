@@ -21,7 +21,7 @@ const scanline = keyframes`
 const CardContainer = styled.div`
   width: 100%;
   max-width: 1200px;
-  margin: 23vh auto 0;
+  margin: 33vh auto 0;
   padding: 30px 20px 60px;
   display: flex;
   flex-direction: column;
@@ -31,18 +31,24 @@ const CardContainer = styled.div`
 `;
 
 const Title = styled.h2`
-  font-size: 4.5rem;
-  font-weight: 900;
+  font-size: 2.5rem;
   text-align: center;
-  margin-bottom: 40px;
-  color: #8BC34A;
+  margin-bottom: 50px;
+  color: #335da9;
   text-transform: uppercase;
-  letter-spacing: 4px;
+  letter-spacing: 2px;
   position: relative;
+  padding-bottom: 15px;
 
-  @media (max-width: 768px) {
-    font-size: 3rem;
-    letter-spacing: 2px;
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(90deg, #4CAF50, #45a049);
   }
 `;
 

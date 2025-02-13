@@ -21,6 +21,18 @@ const neonGlow = keyframes`
   100% { box-shadow: 0 0 5px rgba(82, 157, 255, 0.3), 0 0 10px rgba(82, 157, 255, 0.3), 0 0 15px rgba(82, 157, 255, 0.3); }
 `;
 
+const pulseGlow = keyframes`
+  0% { box-shadow: 0 0 0 0 rgba(139, 195, 74, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(139, 195, 74, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(139, 195, 74, 0); }
+`;
+
+const borderFlow = keyframes`
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+`;
+
 const HeaderWrapper = styled.header`
   width: 100%;
   position: fixed;
@@ -113,6 +125,89 @@ const StyledDrawer = styled(Drawer)`
 const DrawerList = styled(List)`
   && {
     margin-top: 20px;
+  }
+`;
+
+const HomeButton = styled(Button)`
+  && {
+    color: #E0F2F1;
+    text-transform: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 12px 32px;
+    border-radius: 20px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgba(33, 150, 243, 0.1), rgba(139, 195, 74, 0.1));
+    backdrop-filter: blur(10px);
+    border: none;
+    letter-spacing: 0.5px;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 20px;
+      padding: 2px;
+      background: linear-gradient(300deg, #2196F3, #8BC34A, #2196F3);
+      background-size: 200% auto;
+      animation: ${borderFlow} 3s linear infinite;
+      -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+      mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #2196F3, #8BC34A);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      border-radius: 20px;
+      z-index: -1;
+    }
+
+    span {
+      position: relative;
+      z-index: 1;
+      background: linear-gradient(135deg, #2196F3, #8BC34A);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      transition: all 0.4s ease;
+    }
+
+    &:hover {
+      transform: translateY(-2px) scale(1.02);
+      background: rgba(33, 150, 243, 0.15);
+      animation: ${pulseGlow} 1.5s infinite;
+
+      &::after {
+        opacity: 0.1;
+      }
+
+      span {
+        background: linear-gradient(135deg, #000000, #333333);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        transform: scale(1.05);
+      }
+    }
+
+    &:active {
+      transform: translateY(1px) scale(0.98);
+    }
+
+    @media (max-width: 1200px) {
+      padding: 10px 24px;
+      font-size: 1rem;
+    }
   }
 `;
 
@@ -311,19 +406,24 @@ const Navbar = () => {
           <StyledToolbar>
             <LogoContainer>
               <Link to="/">
-                <Logo src="/images/dropship logo.png" alt="Dropship India" />
+                <Logo src="/images/dropship logo.png" alt="Dropship India Logo" />
               </Link>
             </LogoContainer>
             <NavContainer>
-              {menuItems.map((item, index) => (
-                <Link to={item.path} key={index} style={{ textDecoration: 'none' }}>
-                  <StyledButton 
-                    active={isActive(item.path)}
-                  >
-                    {item.label}
-                  </StyledButton>
-                </Link>
-              ))}
+              <HomeButton
+                component={Link}
+                to="/"
+                active={isActive('/')}
+              >
+                <span>Home</span>
+              </HomeButton>
+              <StyledButton
+                component={Link}
+                to="/products"
+                active={isActive('/products')}
+              >
+                Products
+              </StyledButton>
               <AuthButton
                 onClick={() => window.open('https://dropshipindia.live/', '_blank')}
               >

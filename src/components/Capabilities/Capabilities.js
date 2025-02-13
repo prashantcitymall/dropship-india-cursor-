@@ -1,5 +1,17 @@
 import React from 'react';
 import './Capabilities.css';
+import styled from 'styled-components';
+
+const Title = styled.h2`
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 50px;
+  color: #335da9;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+  padding-bottom: 15px;
+`;
 
 const capabilitiesData = [
   {
@@ -55,7 +67,7 @@ const capabilitiesData = [
 const Capabilities = () => {
   return (
     <section className="capabilities-section">
-      <h2 className="capabilities-title">Why Choose Dropship India?</h2>
+      <Title>Why Choose Dropship India?</Title>
       <div className="capabilities-grid">
         {capabilitiesData.map((item) => (
           <div key={item.id} className="capability-card">

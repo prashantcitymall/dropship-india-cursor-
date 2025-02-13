@@ -143,6 +143,44 @@ const SubTitle = styled.h2`
   }
 `;
 
+const IntegrationText = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 1.8rem;
+  color: #1976D2;
+  margin-bottom: 30px;
+  animation: ${slideUp} 0.8s ease-out 0.3s backwards;
+
+  img {
+    height: 35px;
+    width: auto;
+    margin-left: 10px;
+  }
+
+  @media (max-width: 1024px) {
+    font-size: 1.6rem;
+    img {
+      height: 30px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    font-size: 1.4rem;
+    img {
+      height: 25px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1.2rem;
+    img {
+      height: 20px;
+    }
+  }
+`;
+
 const ButtonGroup = styled.div`
   display: flex;
   gap: 20px;
@@ -223,8 +261,16 @@ const PremiumButton = styled(Button)`
 const Hero = () => {
   return (
     <HeroSection>
-      <VideoBackground autoPlay muted loop playsInline>
+      <VideoBackground 
+        autoPlay 
+        muted 
+        loop 
+        playsInline
+        preload="auto"
+        webkit-playsinline="true"
+      >
         <source src="/video/robot.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
       </VideoBackground>
       <ContentWrapper maxWidth="xl">
         <MainTitle>
@@ -233,6 +279,9 @@ const Hero = () => {
         <SubTitle>
           Start your e-commerce journey with our powerful dropshipping solution
         </SubTitle>
+        <IntegrationText>
+          <strong>Dropship India Integrates with</strong> <img src="/images/shopify.png" alt="Shopify Logo" /> <strong>Shopify</strong>
+        </IntegrationText>
         <ButtonGroup>
           <PremiumButton
             variant="contained"

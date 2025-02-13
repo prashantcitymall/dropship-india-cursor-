@@ -17,7 +17,7 @@ const CarouselContainer = styled.div`
   position: relative;
   margin-top: -10%;
   z-index: 2;
-  background: #1a237e;
+  background: #F5F5F5;
   padding: 60px 0;
 
   @media (max-width: 1024px) {
@@ -52,12 +52,12 @@ const CarouselContainer = styled.div`
 
   &::before {
     left: 0;
-    background: linear-gradient(to right, #335da9, transparent);
+    background: linear-gradient(to right, #F5F5F5, transparent);
   }
 
   &::after {
     right: 0;
-    background: linear-gradient(to left, #335da9, transparent);
+    background: linear-gradient(to left, #F5F5F5, transparent);
   }
 `;
 
@@ -97,13 +97,13 @@ const Card = styled.div`
   width: 220px;
   height: 120px;
   margin: 0 30px;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.9);
   border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.08);
   overflow: hidden;
   position: relative;
   transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 
   @media (max-width: 1024px) {
     width: 200px;
@@ -136,7 +136,7 @@ const Card = styled.div`
     background: linear-gradient(
       90deg,
       transparent,
-      rgba(255, 255, 255, 0.2),
+      rgba(255, 255, 255, 0.8),
       transparent
     );
     transition: 0.5s;
@@ -144,15 +144,15 @@ const Card = styled.div`
 
   &:hover {
     transform: translateY(-5px) scale(1.02);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    border-color: rgba(0, 0, 0, 0.12);
 
     &::before {
       left: 100%;
     }
 
     img {
-      filter: brightness(1) contrast(1.05);
+      filter: brightness(1.05) contrast(1.05);
       transform: scale(1.05);
     }
   }
@@ -162,7 +162,7 @@ const Card = styled.div`
     height: 100%;
     object-fit: contain;
     padding: 15px;
-    filter: brightness(0.9) contrast(1.1);
+    filter: brightness(1) contrast(1);
     transition: all 0.3s ease;
 
     @media (max-width: 768px) {
